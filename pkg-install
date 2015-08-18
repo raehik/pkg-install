@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+#
+# Install selected packages using files from a directory.
+#
+
+pkgfile_dir="packages"
+aur_helper_cmd="yaourt -Syua"
+
+CMD_FILE_IDENTIFIER="# COMMAND FILE"
+AUR_IDENTIFIER="aur: "
+INCLUDE_IDENTIFIER="include "
+
+ORIG_PWD="$(pwd)"
+
+pkg_list=
+
+process_pkg_file() {
+    echo "PACKAGE FILE: $1"
+    while read line; do
+        if [[ "$line" == "#"* ]]; then
+            # line starts with '#', so it's a comment
+            echo "COMMENT: $line"
+        elif [[ "$line" == "$INCLUDE_IDENTIFIER"* ]]; then
+            # line starts with 'include ', so we're including another package
+            # file
+            include_pkgs="$(cut --complement -d " " -f 1 <<< "$line")"
+            echo "INCLUDE: $include_pkgs"
+            for file in $include_pkgs; do
+                # CHECK IT: RECURSION ACTUALLY BEING USEFUL HOLY FUCK
+                process_pkg_file "$pkgfile_dir/$file"
+            done
+        elif [[ "$line" == "$AUR_IDENTIFIER"* ]]; then
+            aur_pkgs="$(cut --complement -d " " -f 1 <<< "$line")"
+            $aur_helper_cmd $aur_pkgs
+        else
+            # normal line indicating package(s)
+            pkg_list+="$line "
+        fi
+    done < "$1"
+}
+
+case $1 in
+    all) pkg_files="$(find "$pkgfile_dir" -type f -printf "%f\n")" ;;
+    *) pkg_files="$1" ;;
+esac
+
+for file in $pkg_files; do
+    cur_file="$pkgfile_dir/$file"
+
+    # decide if the file should be parsed as shell commands or packages to
+    # install
+    if [[ "$(head -n1 "$cur_file")" == "$CMD_FILE_IDENTIFIER" ]]; then
+        echo "Command file found, sourcing $cur_file"
+        source "$cur_file"
+
+        # reset directory
+        cd "$ORIG_PWD"
+    else
+        process_pkg_file "$cur_file"
+    fi
+done
+
+pacman -Sy $pkg_list

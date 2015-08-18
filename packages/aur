@@ -1,0 +1,22 @@
+# COMMAND FILE
+# vim: ft=sh
+
+# initialise temp. dir.
+aur_ts="$(date +%s)"
+aur_tmpdir="/tmp/$aur_ts-pkg-install-aur"
+mkdir "$aur_tmpdir"
+cd "$aur_tmpdir"
+
+# install package-query first (required)
+curl -O https://aur.archlinux.org/packages/pa/package-query/package-query.tar.gz
+tar zxvf package-query.tar.gz
+cd package-query
+makepkg -si
+cd ..
+
+# now install yaourt
+curl -O https://aur.archlinux.org/packages/ya/yaourt/yaourt.tar.gz
+tar zxvf yaourt.tar.gz
+cd yaourt
+makepkg -si
+cd ..

@@ -1,0 +1,13 @@
+xorg-server
+xorg-xrdb
+xorg-xrandr
+xorg-xinit
+xorg-xset
+xorg-xev
+xorg-xbacklight
+i3-wm
+perl-anyevent-i3
+perl-json-xs
+i3status
+dmenu
+rxvt-unicode
