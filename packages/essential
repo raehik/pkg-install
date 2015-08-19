@@ -1,7 +1,15 @@
+# system
+ntp
 openssh
+
+# to fix weird SSH behaviour
 rxvt-unicode-terminfo
+
+# basic terminal & dev tools
 zsh
 vim
 git
-ntp
+python2
+python3
 tmux
+ctags

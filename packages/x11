@@ -11,3 +11,4 @@ perl-json-xs
 i3status
 dmenu
 rxvt-unicode
+aur: compton
