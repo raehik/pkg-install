@@ -4,11 +4,15 @@
 #
 
 pkgfile_dir="packages"
-aur_helper_cmd="yaourt -Syua"
 
-CMD_FILE_IDENTIFIER="# COMMAND FILE"
-AUR_IDENTIFIER="aur: "
-INCLUDE_IDENTIFIER="include "
+aur_helper_cmd="yaourt -Sya"
+pkg_install_cmd="sudo pacman -Sy"
+
+CMD_FILE_IDENT="# COMMAND FILE"
+
+COMMENT_IDENT="#"
+AUR_IDENT="aur: "
+INCLUDE_IDENT="include "
 
 ORIG_PWD="$(pwd)"
 
@@ -17,31 +21,63 @@ pkg_list=
 process_pkg_file() {
     echo "PACKAGE FILE: $1"
     while read line; do
-        if [[ "$line" == "#"* ]]; then
-            # line starts with '#', so it's a comment
-            echo "COMMENT: $line"
-        elif [[ "$line" == "$INCLUDE_IDENTIFIER"* ]]; then
-            # line starts with 'include ', so we're including another package
-            # file
-            include_pkgs="$(cut --complement -d " " -f 1 <<< "$line")"
-            echo "INCLUDE: $include_pkgs"
-            for file in $include_pkgs; do
-                # CHECK IT: RECURSION ACTUALLY BEING USEFUL HOLY FUCK
-                process_pkg_file "$pkgfile_dir/$file"
-            done
-        elif [[ "$line" == "$AUR_IDENTIFIER"* ]]; then
-            aur_pkgs="$(cut --complement -d " " -f 1 <<< "$line")"
-            $aur_helper_cmd $aur_pkgs
-        else
-            # normal line indicating package(s)
-            pkg_list+="$line "
-        fi
+        case "$line" in
+            "")
+                # empty line, skip w/o logging
+                continue
+                ;;
+
+            "$INCLUDE_IDENT"*)
+                # specifying package file(s) to include
+                process_include "$line"
+                ;;
+
+            "$AUR_IDENT"*)
+                # aur package(s)
+                process_aur_pkgs "$line"
+                ;;
+
+            "$COMMENT_IDENT"*)
+                # comment
+                process_comment "$line"
+                ;;
+
+            *)
+                # normal line indicating package(s)
+                process_pkgs "$line"
+                ;;
+        esac
     done < "$1"
 }
 
-case $1 in
+process_comment() {
+    echo "COMMENT: $1"
+}
+
+process_include() {
+    include_pkgs="$(cut --complement -d " " -f 1 <<< "$1")"
+    echo "INCLUDE: $include_pkgs"
+
+    for file in $include_pkgs; do
+        # recursion boys
+        process_pkg_file "$pkgfile_dir/$file"
+    done
+}
+
+process_aur_pkgs() {
+    aur_pkgs="$(cut --complement -d " " -f 1 <<< "$1")"
+    echo "AUR: $aur_pkgs"
+    aur_pkg_list+="$aur_pkgs "
+}
+
+process_pkgs() {
+    echo "PACKAGES: $1"
+    pkg_list+="$1 "
+}
+
+case $@ in
     all) pkg_files="$(find "$pkgfile_dir" -type f -printf "%f\n")" ;;
-    *) pkg_files="$1" ;;
+    *) pkg_files="$@" ;;
 esac
 
 for file in $pkg_files; do
@@ -60,4 +96,12 @@ for file in $pkg_files; do
     fi
 done
 
-pacman -Sy $pkg_list
+# AUR packages
+if [[ "$aur_pkg_list" ]]; then
+    $aur_helper_cmd $aur_pkg_list
+fi
+
+# normal packages
+if [[ "$pkg_list" ]]; then
+    $pkg_install_cmd $pkg_list
+fi
