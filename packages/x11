@@ -6,9 +6,10 @@ xorg-xset
 xorg-xev
 xorg-xbacklight
 i3-wm
+i3lock
+i3status
 perl-anyevent-i3
 perl-json-xs
-i3status
 dmenu
 rxvt-unicode
 aur: compton
