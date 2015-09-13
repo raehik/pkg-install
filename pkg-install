@@ -85,7 +85,7 @@ for file in $pkg_files; do
 
     # decide if the file should be parsed as shell commands or packages to
     # install
-    if [[ "$(head -n1 "$cur_file")" == "$CMD_FILE_IDENTIFIER" ]]; then
+    if [[ "$(head -n1 "$cur_file")" == "$CMD_FILE_IDENT" ]]; then
         echo "Command file found, sourcing $cur_file"
         source "$cur_file"
 
