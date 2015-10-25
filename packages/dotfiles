@@ -1,5 +1,4 @@
-# COMMAND FILE
-git clone https://github.com/raehik/dotfiles /tmp/dotfiles
-cd /tmp/dotfiles
+# GITHUB FILE
+raehik/dotfiles
 ./install
-rm -rf /tmp/dotfiles
+$HOME/projects/configfiles/dotfiles
