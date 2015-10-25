@@ -7,6 +7,7 @@ import sys
 import os
 import argparse
 import subprocess
+import time
 
 FILENAME = sys.argv[0]
 
@@ -128,7 +129,25 @@ def process_command_file(filename):
 
 def process_gh_file(filename):
     log("GITHUB FILE: %s" % filename)
-    return
+    f = open(filename, "r")
+    # skip first line (= identifier)
+    f.readline()
+
+    repo_name = f.readline().strip()
+    post_cmd = f.readline().strip()
+    repo_dir = f.readline().strip()
+
+    if not repo_dir:
+        log("No repo directory given, using %s" % GH_TMPDIR)
+        repo_dir = GH_TMPDIR + "/pkg-install-" + time.strftime("%s")
+
+    repo_url = os.path.join(GH_URL, repo_name)
+    log("Cloning {} into {}...".format(repo_url, repo_dir))
+    subprocess.call("git clone '" + repo_url + "' " + repo_dir, shell=True)
+
+    if post_cmd:
+        log("Post command found: %s" % post_cmd)
+        subprocess.call("cd " + repo_dir + "; " + post_cmd, shell=True)
 
 def install_aur_pkgs(pkgs):
     cmd = aur_helper_cmd.split()
