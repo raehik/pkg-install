@@ -1,5 +1,12 @@
+# mail
 aur: mutt-sidebar
 offlineimap
-weechat
+
+# calendar
 wyrd
 remind
+
+# chat
+weechat
+bitlbee
+aur: bitlbee-steam-git
