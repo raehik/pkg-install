@@ -1,5 +1,21 @@
+# music
+mpd
+aur: mpdscribble
+ncmpcpp
+
+# media
+imagemagick
+mplayer
+
+# mail
 aur: mutt-sidebar
 offlineimap
-weechat
+
+# calendar
 wyrd
 remind
+
+# chat
+weechat
+bitlbee
+aur: bitlbee-steam-git

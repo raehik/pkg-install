@@ -5,3 +5,8 @@ aur: alsa-utils-transparent
 pavucontrol
 aur: pasystray-git
 gvim
+picard
+scrot
+sxiv
+zathura
+zathura-pdf-mupdf

@@ -108,6 +108,7 @@ def process_comment(line):
 
 def process_include(line):
     log("INCLUDE: %s" % line)
+    # recursion boyssss
     process_files(line.split())
 
 def process_aur_pkg(line):

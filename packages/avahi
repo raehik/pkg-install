@@ -1,0 +1,8 @@
+# COMMAND FILE
+
+sudo pacman -Sy avahi nss-mdns
+sudo sed -e 's/\(^hosts: files dns myhostname\)/#\1/' \
+         -e '10ihosts: files mdns_minimal [NOTFOUND=return] dns myhostname' \
+         -i /etc/nsswitch.conf
+
+sudo systemctl enable avahi-daemon
