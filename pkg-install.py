@@ -130,25 +130,49 @@ def process_command_file(filename):
 
 def process_gh_file(filename):
     log("GITHUB FILE: %s" % filename)
-    f = open(filename, "r")
-    # skip first line (= identifier)
-    f.readline()
+    with open(filename, "r") as f:
+        # skip first line (= identifier)
+        f.readline()
+        raw_info = f.read().splitlines()
+        repo_info = process_gh_info(raw_info)
 
-    repo_name = f.readline().strip()
-    post_cmd = f.readline().strip()
-    repo_dir = f.readline().strip()
+    for repo in repo_info:
+        repo_name = repo[0]
+        repo_dir = repo[1]
+        post_cmd = repo[2]
 
-    if not repo_dir:
-        log("No repo directory given, using %s" % GH_TMPDIR)
-        repo_dir = GH_TMPDIR + "/pkg-install-" + time.strftime("%s")
+        if not repo_dir:
+            log("No repo directory given, using %s" % GH_TMPDIR)
+            repo_dir = GH_TMPDIR + "/pkg-install-" + time.strftime("%s")
 
-    repo_url = os.path.join(GH_URL, repo_name)
-    log("Cloning {} into {}...".format(repo_url, repo_dir))
-    subprocess.call("git clone '" + repo_url + "' " + repo_dir, shell=True)
+        repo_url = os.path.join(GH_URL, repo_name)
+        log("Cloning {} into {}...".format(repo_url, repo_dir))
+        #subprocess.call("git clone '" + repo_url + "' " + repo_dir, shell=True)
 
-    if post_cmd:
-        log("Post command found: %s" % post_cmd)
-        subprocess.call("cd " + repo_dir + "; " + post_cmd, shell=True)
+        if post_cmd:
+            log("Post command found: %s" % post_cmd)
+            #subprocess.call("cd " + repo_dir + "; " + post_cmd, shell=True)
+
+def process_gh_info(raw_info):
+    info = []
+
+    for i in range(0, len(raw_info), 3):
+        line_1 = raw_info[i]
+
+        try:
+            line_2 = raw_info[i+1]
+        except IndexError:
+            line_2 = ""
+
+        try:
+            line_3 = raw_info[i+2]
+        except IndexError:
+            line_3 = ""
+
+        info.append([line_1, line_2, line_3])
+
+    return info
+
 
 def install_aur_pkgs(pkgs):
     cmd = aur_helper_cmd.split()

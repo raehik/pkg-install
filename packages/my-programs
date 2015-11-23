@@ -1,0 +1,20 @@
+# GITHUB FILE
+raehik/pyplater
+$HOME/projects/coding/programs/pyplater
+./install
+
+raehik/rockbox-scripts
+$HOME/projects/coding/programs/rockbox-scripts
+./install
+
+raehik/markdown-render
+$HOME/projects/coding/programs/markdown-render
+ln -s $HOME/projects/coding/programs/markdown-render/markdown-render $HOME/bin
+
+raehik/redcarpet-custom
+$HOME/projects/coding/programs/redcarpet-custom
+ln -s $HOME/projects/coding/programs/redcarpet-custom/redcarpet-custom.rb $HOME/bin ; ln -s $HOME/projects/coding/programs/redcarpet-custom/redcarpet-custom-wrapper.rb $HOME/bin
+
+raehik/xinput-keylog
+$HOME/projects/coding/programs/xinput-keylog
+ln -s $HOME/projects/coding/programs/xinput-keylog/xinput-keylog $HOME/bin
