@@ -147,11 +147,11 @@ def process_gh_file(filename):
 
         repo_url = os.path.join(GH_URL, repo_name)
         log("Cloning {} into {}...".format(repo_url, repo_dir))
-        #subprocess.call("git clone '" + repo_url + "' " + repo_dir, shell=True)
+        subprocess.call("git clone '" + repo_url + "' " + repo_dir, shell=True)
 
         if post_cmd:
             log("Post command found: %s" % post_cmd)
-            #subprocess.call("cd " + repo_dir + "; " + post_cmd, shell=True)
+            subprocess.call("cd " + repo_dir + "; " + post_cmd, shell=True)
 
 def process_gh_info(raw_info):
     info = []
