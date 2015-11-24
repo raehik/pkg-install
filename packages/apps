@@ -1,7 +1,8 @@
 # music
 mpd
-aur: mpdscribble
 ncmpcpp
+aur: mpdscribble
+aur: alsa-utils-transparent
 
 # media
 imagemagick
