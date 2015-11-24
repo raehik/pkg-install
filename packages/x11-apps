@@ -10,3 +10,6 @@ scrot
 sxiv
 zathura
 zathura-pdf-mupdf
+
+# for setting desktop background
+feh
