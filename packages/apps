@@ -5,7 +5,6 @@ ncmpcpp
 
 # media
 imagemagick
-mplayer
 
 # mail
 aur: mutt-sidebar
