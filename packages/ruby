@@ -1,2 +1,7 @@
-aur: rbenv
-aur: ruby-build
+# GITHUB FILE
+rbenv/rbenv
+$HOME/.rbenv
+src/configure && make -C src
+rbenv/ruby-build
+$HOME/.rbenv/plugins/ruby-build
+
