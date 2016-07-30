@@ -1,4 +1,4 @@
-mplayer
+mpv
 firefox
 flashplugin
 gst-plugins-good
@@ -6,7 +6,8 @@ pavucontrol
 aur: pasystray-git
 gvim
 picard
-scrot
+maim
+slop
 sxiv
 zathura
 zathura-pdf-mupdf
