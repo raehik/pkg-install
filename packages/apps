@@ -2,7 +2,7 @@
 mpd
 ncmpcpp
 aur: mpdscribble
-aur: alsa-utils-transparent
+alsa-utils
 
 # media
 imagemagick
