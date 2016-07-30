@@ -19,7 +19,7 @@ GH_TMPDIR = "/tmp"
 
 COMMENT_IDENT = "#"
 AUR_IDENT = "aur: "
-INCLUDE_IDENT = "include "
+INCLUDE_IDENT = "include: "
 
 ORIG_PWD = os.getcwd()
 
