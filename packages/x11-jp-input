@@ -1,3 +1,4 @@
 ibus
-ibus-anthy
+qt5-base
+aur: ibus-mozc
 librsvg
