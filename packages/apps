@@ -11,11 +11,13 @@ imagemagick
 aur: mutt-sidebar
 offlineimap
 
-# calendar
-wyrd
-remind
-
 # chat
 weechat
 bitlbee
 aur: bitlbee-steam-git
+
+# old
+## calendar
+#wyrd
+#remind
+
