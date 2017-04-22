@@ -15,3 +15,5 @@ tmux
 ctags
 wget
 ack
+htop
+zip
