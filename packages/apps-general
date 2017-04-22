@@ -1,0 +1,11 @@
+# music
+mpd
+ncmpcpp
+aur: mpdscribble
+alsa-utils
+
+# media
+imagemagick
+
+# chat
+weechat
