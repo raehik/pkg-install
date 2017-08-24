@@ -1,9 +1,16 @@
+# Check Arch Wiki for more: https://wiki.archlinux.org/index.php/fonts
+
+# great aliased terminal font, can also be used in console mode
 terminus-font
-adobe-source-han-sans-jp-fonts
+
+# JP: great aliased (terminal) font
 ttf-sazanami
 
 # good range of general-use fonts
 ttf-dejavu
+
+# JP: quality open source general-use fonts
+otf-ipafont
 
 # Arial-like
 ttf-liberation
