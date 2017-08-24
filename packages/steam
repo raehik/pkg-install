@@ -1,0 +1,6 @@
+# Steam requires multilib
+steam
+
+# fonts look awful without
+# see Arch wiki https://wiki.archlinux.org/index.php/steam#Installation
+ttf-liberation
