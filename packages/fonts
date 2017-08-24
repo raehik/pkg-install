@@ -1,4 +1,9 @@
 terminus-font
 adobe-source-han-sans-jp-fonts
 ttf-sazanami
+
+# good range of general-use fonts
 ttf-dejavu
+
+# Arial-like
+ttf-liberation
