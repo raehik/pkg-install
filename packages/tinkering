@@ -1,2 +1,5 @@
 # mount ISOs in userspace
 fuseiso
+
+# useful hex editor/viewer
+dhex
