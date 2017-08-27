@@ -1,0 +1,9 @@
+# possible dependencies for Dolphin (likely mostly optional)
+miniupnpc
+wxgtk2
+soundtouch
+sfml
+mbedtls
+bluez-tools
+bluez-libs
+portaudio
