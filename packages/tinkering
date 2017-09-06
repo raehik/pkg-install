@@ -1,5 +1,8 @@
 # mount ISOs in userspace
 fuseiso
 
+# mount an SSH target on a directory
+sshfs
+
 # useful hex editor/viewer
 dhex
