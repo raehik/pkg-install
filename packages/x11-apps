@@ -4,7 +4,6 @@ flashplugin
 pavucontrol
 aur: pasystray-git
 gvim
-picard
 maim
 slop
 sxiv
@@ -12,6 +11,12 @@ zathura
 zathura-pdf-mupdf
 anki
 simple-scan
+
+# picard requirements
+picard
+chromaprint
+libdiscid
+# ALSO: pip2 install discid
 
 # for setting desktop background
 feh
