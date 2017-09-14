@@ -1,0 +1,11 @@
+# general
+ntp
+openssh
+
+# filesystems
+e2fsprogs
+dosfstools
+ntfs-3g
+
+# to fix weird SSH behaviour
+rxvt-unicode-terminfo
