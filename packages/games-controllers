@@ -1,0 +1,4 @@
+# PS3 controller via Bluetooth
+bluez
+bluez-plugins
+bluez-utils
