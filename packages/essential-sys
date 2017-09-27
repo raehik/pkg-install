@@ -3,6 +3,7 @@ ntp
 openssh
 
 # filesystems
+gptfdisk
 e2fsprogs
 dosfstools
 ntfs-3g
