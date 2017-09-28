@@ -1,0 +1,4 @@
+# COMMAND FILE
+
+sudo pacman -Sy cups
+sudo systemctl enable org.cups.cupsd.service
