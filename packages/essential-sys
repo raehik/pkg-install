@@ -1,6 +1,7 @@
 # general
 ntp
 openssh
+rsync
 
 # filesystems
 gptfdisk
