@@ -12,3 +12,4 @@ perl-anyevent-i3
 perl-json-xs
 dmenu
 rxvt-unicode
+xdotool
