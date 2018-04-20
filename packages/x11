@@ -13,3 +13,8 @@ perl-json-xs
 dmenu
 rxvt-unicode
 xdotool
+
+# theming
+gnome-themes-standard
+arc-gtk-theme
+gtk-engine-murrine
