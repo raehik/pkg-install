@@ -14,7 +14,7 @@ python3
 tmux
 ctags
 wget
-ack
+the_silver_surfer # ag
 htop
 zip
 unzip
