@@ -24,7 +24,7 @@ INCLUDE_IDENT = "include: "
 ORIG_PWD = os.getcwd()
 
 def_pkgfile_dir = "packages"
-aur_helper_cmd = "yaourt -Sya"
+aur_helper_cmd = "yay"
 pkg_install_cmd = "sudo pacman -Sy"
 
 pkg_list = []

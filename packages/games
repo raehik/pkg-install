@@ -1,2 +1,9 @@
 aur: tome4
 retroarch
+
+# Steam (requires multilib) {{{
+steam
+
+# Arial replacement (fonts look awful without)
+ttf-liberation
+# }}}
